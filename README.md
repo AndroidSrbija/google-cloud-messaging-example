@@ -1,6 +1,7 @@
 # Google Cloud Message Example
 
-###Go to this [link](https://developers.google.com/cloud-messaging/android/client)and find GET A CONFIGURATION FILE, follow the steps and create your app for google analytics
+###Go to this [link](https://developers.google.com/cloud-messaging/android/client) and find GET A CONFIGURATION FILE, follow the steps and create your app for google 
+analytics
 
 ###Add plugin and dependency with Gradle
 
@@ -52,25 +53,30 @@ apply plugin: 'com.google.gms.google-services'
 ### Check if there is gps on device
 
 ```java
-if (checkPlayServices()) {
-    Intent intent = new Intent(this, RegistrationIntentService.class);
-    startService(intent);
-}
-```
-
-```java
-private boolean checkPlayServices() {
-    GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-    int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
-    if (resultCode != ConnectionResult.SUCCESS) {
-        if (apiAvailability.isUserResolvableError(resultCode)) {
-            apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST).show();
-        } else {
-            finish();
+public class MainActivity extends AppCompatActivity {
+---
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        if (checkPlayServices()) {
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
         }
-        return false;
+---
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
-    return true;
 }
 ```
 
@@ -112,6 +118,7 @@ public class MyGcmListenerService extends GcmListenerService {
         sendNotification(message);
     }
   ---
+ }
 ```
 
 ### Create InstanceIDListenerService and override onTokenRefresh
@@ -126,7 +133,7 @@ public class MyInstanceIDListenerService extends InstanceIDListenerService {
 }
 ```
 
-### example how to send message
+### Example how to send message
 
 Host value: https://gcm-http.googleapis.com/gcm/send
 
