@@ -1,7 +1,6 @@
 # Google Cloud Message Example
 
-###Go to this [link](https://developers.google.com/cloud-messaging/android/client) and find GET A CONFIGURATION FILE, follow the steps and create your app for google 
-analytics
+###Go to this [link](https://developers.google.com/cloud-messaging/android/client) and find GET A CONFIGURATION FILE, follow the steps and create your app for google analytics
 
 ###Add plugin and dependency with Gradle
 
