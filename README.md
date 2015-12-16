@@ -54,7 +54,7 @@ apply plugin: 'com.google.gms.google-services'
 
 ```java
 public class MainActivity extends AppCompatActivity {
----
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
----
+
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
         int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 ### Create intent service and override onHandleIntent
 ```java
 public class RegistrationIntentService extends IntentService {
- ---
+
 @Override
 protected void onHandleIntent(Intent intent) {
     try {
@@ -97,7 +97,7 @@ protected void onHandleIntent(Intent intent) {
     Intent registrationComplete = new Intent(REGISTRATION_COMPLETE);
     LocalBroadcastManager.getInstance(this).sendBroadcast(registrationComplete);
 }
----
+
 }
 ```
 
@@ -105,7 +105,6 @@ protected void onHandleIntent(Intent intent) {
 
 ```java
 public class MyGcmListenerService extends GcmListenerService {
-   ---
  @Override
     public void onMessageReceived(String from, Bundle data) {
         String message = data.getString("message");
@@ -117,7 +116,6 @@ public class MyGcmListenerService extends GcmListenerService {
         // you can replace sending notification with something you need
         sendNotification(message);
     }
-  ---
  }
 ```
 
@@ -142,18 +140,21 @@ Path value: /gcm/send
 Authorization: key=app key here
 
 specific user:
+
+```json
 {
     "to": "user token here",
     "data": {
       "message": "Message here",
      }
-       }
+}```
        
 topic:
+
+```json
 {
     "to": "/topics/global",
     "data": {
       "message": "Message here",
      }
-  }
-
+}```
