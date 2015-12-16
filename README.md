@@ -147,8 +147,10 @@ specific user:
     "data": {
       "message": "Message here",
      }
-}```
-       
+}
+```
+
+
 topic:
 
 ```json
@@ -157,4 +159,5 @@ topic:
     "data": {
       "message": "Message here",
      }
-}```
+}
+```
